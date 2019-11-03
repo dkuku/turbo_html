@@ -31,8 +31,24 @@ config :turbo_html, Turbo.HTML,
 
 Two methods are provided:
 
-* `turbo_pagination_links`: for pagination view.
 * `turbo_search_input`: for search input.
+* `turbo_pagination_links`: for pagination view.
+* `turbo_pagination_custom`: for pagination when using own css classes.
+
+## Basic usage:
+```
+    <%= turbo_pagination_view(@conn, @paginate) %>
+```
+```
+    <%= form_for @conn, Routes.permit_path(@conn, :index), [method: :get, class: ""], fn f -> %>
+      <%= turbo_search_input f, "q[user_name_or_address_like]", placeholder: "name or address", class: "form-input" %>
+      <%= submit "search", class: "" %>
+    <% end %>
+```
+```
+    <%= turbo_pagination_custom(@conn, @paginate, class: "border-2 p-2 font-bold",
+        normal_class: "bg-secondary", active_class: "bg-primary", disabled_class: "bg-disabled") %>
+```
 
 ## Demo
 

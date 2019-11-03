@@ -5,6 +5,7 @@ defmodule Turbo.HTML do
 
   alias Turbo.HTML.Views.{
     PaginateView,
+    PaginateCustomView,
     SearchInputView
   }
 
@@ -15,6 +16,20 @@ defmodule Turbo.HTML do
   """
   def turbo_pagination_links(conn, paginate, opts \\ []) do
     PaginateView.pagination_links(conn, paginate, opts)
+  end
+
+  @doc """
+  custom paginate view
+  allows to specify classes for pagination:
+    parent_class: "parent"
+    disabled_class: "disabled"
+    active_class: "active"
+    normal_class: "normal"
+    class: ""
+  class is common and is concatenated to all the pagination links
+  """
+  def turbo_pagination_custom(conn, paginate, opts \\ []) do
+    PaginateCustomView.pagination_links(conn, paginate, opts)
   end
 
   @doc """
