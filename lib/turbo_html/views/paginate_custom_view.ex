@@ -13,7 +13,7 @@ defmodule Turbo.HTML.Views.PaginateCustomView do
     disabled_class: "disabled",
     active_class: "active",
     normal_class: "normal",
-    class: "",
+    class: ""
   ]
 
   @doc """
@@ -24,12 +24,14 @@ defmodule Turbo.HTML.Views.PaginateCustomView do
     merged_opts = Keyword.merge(@default_opts, opts)
     parent_class = opts[:parent_class]
 
-    pagination_links(parent_class, do: [] ++
-        [first_page_link(conn, paginate, merged_opts)] ++
-        [previous_page_link(conn, paginate, merged_opts)] ++
-        middle_page_links(conn, paginate, merged_opts) ++
-        [next_page_link(conn, paginate, merged_opts)] ++
-        [last_page_link(conn, paginate, merged_opts)]
+    pagination_links(parent_class,
+      do:
+        [] ++
+          [first_page_link(conn, paginate, merged_opts)] ++
+          [previous_page_link(conn, paginate, merged_opts)] ++
+          middle_page_links(conn, paginate, merged_opts) ++
+          [next_page_link(conn, paginate, merged_opts)] ++
+          [last_page_link(conn, paginate, merged_opts)]
     )
   end
 
@@ -48,8 +50,8 @@ defmodule Turbo.HTML.Views.PaginateCustomView do
   @spec first_page_link(Map.t(), Map.t(), Keyword.t()) :: any()
   def first_page_link(conn, %{current_page: current_page}, opts) do
     label = opts[:first_label]
-    disabled_class = opts[:class] <>" "<> opts[:disabled_class]
-    normal_class = opts[:class] <>" "<> opts[:normal_class]
+    disabled_class = opts[:class] <> " " <> opts[:disabled_class]
+    normal_class = opts[:class] <> " " <> opts[:normal_class]
 
     case current_page == 1 do
       true ->
@@ -62,8 +64,8 @@ defmodule Turbo.HTML.Views.PaginateCustomView do
 
   def previous_page_link(conn, %{current_page: current_page, prev_page: prev_page}, opts) do
     label = opts[:previous_label]
-    disabled_class = opts[:class] <>" "<> opts[:disabled_class]
-    normal_class = opts[:class] <>" "<> opts[:normal_class]
+    disabled_class = opts[:class] <> " " <> opts[:disabled_class]
+    normal_class = opts[:class] <> " " <> opts[:normal_class]
 
     case current_page <= 1 do
       true ->
@@ -78,8 +80,8 @@ defmodule Turbo.HTML.Views.PaginateCustomView do
   """
   def middle_page_links(conn, paginate, opts) do
     max_page_links = opts[:max_page_links]
-    active_class = opts[:class] <>" "<> opts[:active_class]
-    normal_class = opts[:class] <>" "<> opts[:normal_class]
+    active_class = opts[:class] <> " " <> opts[:active_class]
+    normal_class = opts[:class] <> " " <> opts[:normal_class]
     current_page = paginate.current_page
     max_page = paginate.total_pages
 
@@ -117,8 +119,8 @@ defmodule Turbo.HTML.Views.PaginateCustomView do
   @spec next_page_link(Map.t(), Map.t(), Keyword.t()) :: any()
   def next_page_link(conn, paginate, opts) do
     label = opts[:next_label]
-    disabled_class = opts[:class] <>" "<> opts[:disabled_class]
-    normal_class = opts[:class] <>" "<> opts[:normal_class]
+    disabled_class = opts[:class] <> " " <> opts[:disabled_class]
+    normal_class = opts[:class] <> " " <> opts[:normal_class]
     current_page = paginate.current_page
     next_page = paginate.next_page
     max_page = paginate.total_pages
@@ -147,8 +149,8 @@ defmodule Turbo.HTML.Views.PaginateCustomView do
   @spec last_page_link(Map.t(), Map.t(), Keyword.t()) :: any()
   def last_page_link(conn, %{current_page: current_page, total_pages: total_pages}, opts) do
     label = opts[:last_label]
-    disabled_class = opts[:class] <>" "<> opts[:disabled_class]
-    normal_class = opts[:class] <>" "<> opts[:normal_class]
+    disabled_class = opts[:class] <> " " <> opts[:disabled_class]
+    normal_class = opts[:class] <> " " <> opts[:normal_class]
 
     case current_page == total_pages do
       true ->
